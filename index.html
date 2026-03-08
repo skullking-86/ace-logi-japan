@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -26,6 +26,7 @@
             </a>
             <nav class="nav-links">
                 <a href="#services">事業内容</a>
+                <a href="catalog.html">製品カタログ</a>
                 <a href="#company">会社概要</a>
                 <a href="#contact" class="btn-nav">お問い合わせ</a>
             </nav>
@@ -38,6 +39,7 @@
         <!-- Mobile Nav -->
         <div class="mobile-nav" id="mobile-nav">
             <a href="#services" class="mobile-link">事業内容</a>
+            <a href="catalog.html" class="mobile-link">製品カタログ</a>
             <a href="#company" class="mobile-link">会社概要</a>
             <a href="#contact" class="mobile-link btn-nav-mobile">お問い合わせ</a>
         </div>
@@ -56,6 +58,7 @@
         </div>
     </section>
 
+
     <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container">
@@ -65,15 +68,19 @@
                 <div class="divider"></div>
             </div>
 
-            <div class="services-grid">
+            <div class="services-list">
                 <!-- Service 1: Harikaeou -->
-                <div class="service-card animate-up reveal delay-1">
-                    <a href="https://harikaeou.co.jp/" target="_blank" class="service-card-link">
-                        <div class="service-image harikaeou-bg"></div>
-                        <div class="service-content">
-                            <div class="service-brand">張替王</div>
-                            <h3 class="service-name">フィットネスマシンの修繕・メンテナンス <small style="font-size: 0.7em;">🔗</small>
-                            </h3>
+                <div class="service-card-wide animate-up reveal delay-1">
+                    <a href="https://harikaeou.co.jp/" target="_blank" class="service-card-link-wide">
+                        <div class="service-image-wide harikaeou-bg">
+                            <div class="service-image-overlay"></div>
+                        </div>
+                        <div class="service-content-wide">
+                            <div class="service-header-row">
+                                <div class="service-brand">張替王</div>
+                                <span class="service-visit-label">サイトを見る →</span>
+                            </div>
+                            <h3 class="service-name">フィットネスマシンの修繕・メンテナンス</h3>
                             <p class="service-desc">
                                 ジムマシンのレザー張替、フレーム塗装、部品交換など、メーカー問わず修繕が可能です。全国対応・現場での臨機応変な対応で、新しく買うよりも早く・安く機器を蘇らせます。
                             </p>
@@ -87,12 +94,18 @@
                 </div>
 
                 <!-- Service 2: Logiking -->
-                <div class="service-card animate-up reveal delay-2">
-                    <a href="https://fitnesslogi.co.jp/" target="_blank" class="service-card-link">
-                        <div class="service-image logiking-bg"></div>
-                        <div class="service-content">
-                            <div class="service-brand">ロジキング</div>
-                            <h3 class="service-name">フィットネスジム特化ロジスティクス <small style="font-size: 0.7em;">🔗</small></h3>
+                <div class="service-card-wide animate-up reveal delay-2">
+                    <a href="https://fitnesslogi.co.jp/" target="_blank"
+                        class="service-card-link-wide service-card-link-wide--reverse">
+                        <div class="service-image-wide logiking-bg">
+                            <div class="service-image-overlay"></div>
+                        </div>
+                        <div class="service-content-wide">
+                            <div class="service-header-row">
+                                <div class="service-brand">ロジキング</div>
+                                <span class="service-visit-label">サイトを見る →</span>
+                            </div>
+                            <h3 class="service-name">フィットネスジム特化ロジスティクス</h3>
                             <p class="service-desc">
                                 フィットネス機器専門の輸送、搬入組立、移設、そして倉庫保管まで、全国のフィットネス施設のお悩みを解決します。24時間対応可能で安心のプロフェッショナル集団です。
                             </p>
@@ -100,6 +113,56 @@
                                 <li><span class="icon">✓</span> フィットネス機器の輸送</li>
                                 <li><span class="icon">✓</span> 搬入・組立・移設</li>
                                 <li><span class="icon">✓</span> 機器の倉庫保管・メンテナンス</li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Service 3: Gymsta Kingdom -->
+                <div class="service-card-wide animate-up reveal delay-3">
+                    <a href="../gymsta-kingdom/index.html" target="_blank" class="service-card-link-wide">
+                        <div class="service-image-wide gymsta-bg">
+                            <div class="service-image-overlay"></div>
+                        </div>
+                        <div class="service-content-wide">
+                            <div class="service-header-row">
+                                <div class="service-brand">ジムスタ王国</div>
+                                <span class="service-visit-label">サイトを見る →</span>
+                            </div>
+                            <h3 class="service-name">フィットネスジムの運営</h3>
+                            <p class="service-desc">
+                                「あなたの王国を、あなたのフィットネスに。」をコンセプトに、高品質なマシンと洗練された空間を備えたフィットネスジムを展開しています。
+                            </p>
+                            <ul class="service-features">
+                                <li><span class="icon">✓</span> 24時間営業店舗あり</li>
+                                <li><span class="icon">✓</span> 最新鋭マシンの完備</li>
+                                <li><span class="icon">✓</span> 独自の空間デザイン</li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Service 4: Impulse -->
+                <div class="service-card-wide animate-up reveal delay-3">
+                    <a href="catalog.html" class="service-card-link-wide service-card-link-wide--reverse">
+                        <div class="service-image-wide impulse-bg">
+                            <div class="service-image-overlay"></div>
+                        </div>
+                        <div class="service-content-wide">
+                            <div class="service-header-row">
+                                <div class="service-brand service-brand-image">
+                                    <img src="images/impulse-logo.png" alt="impulse logo">
+                                </div>
+                                <span class="service-visit-label">製品カタログはこちら →</span>
+                            </div>
+                            <h3 class="service-name">IMPULSE正規代理店</h3>
+                            <p class="service-desc">
+                                高品質なimpulse製品の正規代理店として、マシンの品質とサポート体制を両立。施設に合わせた最適な機器選定から導入までトータルサポート。
+                            </p>
+                            <ul class="service-features">
+                                <li><span class="icon">✓</span> 最新のimpulseマシンの取り扱い</li>
+                                <li><span class="icon">✓</span> 正規代理店ならではの安心サポート</li>
+                                <li><span class="icon">✓</span> 最適な機器構成のご提案</li>
                             </ul>
                         </div>
                     </a>
@@ -213,6 +276,7 @@
                 <div class="footer-links">
                     <a href="#hero">トップ</a>
                     <a href="#services">事業内容</a>
+                    <a href="catalog.html">製品カタログ</a>
                     <a href="#company">会社概要</a>
                     <a href="#contact">お問い合わせ</a>
                 </div>

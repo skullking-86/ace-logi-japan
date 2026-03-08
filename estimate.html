@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お見積り・お問い合わせ | Ace Logi Japan</title>
+    <meta name="description" content="株式会社エースロジジャパンへのお見積り・お問い合わせフォームです。気になる製品をリストに追加して、まとめてご相談いただけます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== Estimate Page ===== */
+
+        .est-header {
+            padding: 110px 0 48px;
+            background: var(--bg-light);
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .est-header-inner {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .est-header-left {}
+
+        .est-header-en {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .est-header-ja {
+            font-size: 0.78rem;
+            color: #999;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .est-header-note {
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.9;
+            text-align: right;
+        }
+
+        /* Layout */
+        .est-body {
+            padding: 52px 0 80px;
+            background: var(--bg-light);
+        }
+
+        .est-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .est-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .est-header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .est-header-note {
+                text-align: left;
+            }
+        }
+
+        /* === Left Panel: Product List === */
+        .est-list-panel {
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            position: sticky;
+            top: 96px;
+        }
+
+        .est-list-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #e4e4e4;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .est-list-title {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        .est-list-total {
+            font-size: 0.72rem;
+            color: #aaa;
+            letter-spacing: 0.5px;
+        }
+
+        .est-list-total strong {
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .est-product-list {
+            list-style: none;
+            min-height: 80px;
+        }
+
+        .est-product-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            border-bottom: 1px solid #f2f2f2;
+            transition: background 0.18s;
+        }
+
+        .est-product-item:last-child {
+            border-bottom: none;
+        }
+
+        .est-product-item:hover {
+            background: #fafafa;
+        }
+
+        .est-item-num {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            color: #ccc;
+            letter-spacing: 0.5px;
+            min-width: 22px;
+            flex-shrink: 0;
+        }
+
+        .est-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .est-item-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .est-item-series {
+            font-size: 0.7rem;
+            color: #bbb;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .est-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .est-qty-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.18s, color 0.18s;
+            color: #666;
+            line-height: 1;
+        }
+
+        .est-qty-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .est-qty-num {
+            min-width: 20px;
+            text-align: center;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .est-item-remove {
+            width: 22px;
+            height: 22px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+            transition: border-color 0.18s, color 0.18s, background 0.18s;
+            flex-shrink: 0;
+        }
+
+        .est-item-remove:hover {
+            border-color: #ddd;
+            background: #fef2f2;
+            color: #c0392b;
+        }
+
+        .est-empty-msg {
+            padding: 36px 24px;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.82rem;
+            line-height: 1.9;
+        }
+
+        .est-empty-msg a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .est-list-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e4e4e4;
+        }
+
+        .est-back-link {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.18s;
+        }
+
+        .est-back-link::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .est-back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* === Right Panel: Form === */
+        .est-form-panel {
+            background: #fff;
+            border: 1px solid #e4e4e4;
+        }
+
+        .est-form-header {
+            padding: 22px 32px;
+            border-bottom: 1px solid #e4e4e4;
+        }
+
+        .est-form-title {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        .est-form-body {
+            padding: 28px 32px 32px;
+        }
+
+        .est-form-lead {
+            font-size: 0.8rem;
+            color: #999;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .est-form-lead .req-note {
+            color: #c0392b;
+        }
+
+        /* Section heading in form */
+        .est-section-heading {
+            font-size: 0.68rem;
+            font-family: var(--font-heading);
+            letter-spacing: 3px;
+            color: #bbb;
+            margin: 28px 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            text-transform: uppercase;
+        }
+
+        .est-section-heading:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.77rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 7px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .req {
+            display: inline-block;
+            background: #c0392b;
+            color: #fff;
+            font-size: 0.6rem;
+            padding: 1px 5px;
+            border-radius: 1px;
+            margin-left: 6px;
+            vertical-align: middle;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: var(--font-main);
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            background: #fafafa;
+            transition: border-color 0.2s, background 0.2s;
+            appearance: none;
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 32px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: #fff;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        /* Radio styles */
+        .radio-group {
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+            margin-top: 7px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .radio-option {
+            flex: 1;
+            min-width: max-content;
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-option span {
+            display: block;
+            padding: 9px 14px;
+            font-size: 0.8rem;
+            color: #888;
+            cursor: pointer;
+            text-align: center;
+            border-right: 1px solid #ddd;
+            transition: background 0.18s, color 0.18s;
+            white-space: nowrap;
+        }
+
+        .radio-option:last-child span {
+            border-right: none;
+        }
+
+        .radio-option input[type="radio"]:checked+span {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .radio-option span:hover {
+            background: #f5f5f5;
+            color: var(--primary-color);
+        }
+
+        .radio-option input[type="radio"]:checked+span:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Submit */
+        .est-submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            cursor: pointer;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-top: 32px;
+            transition: background 0.22s;
+            font-family: var(--font-main);
+        }
+
+        .est-submit-btn:hover {
+            background: var(--highlight);
+        }
+
+        .est-submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .est-form-note {
+            font-size: 0.72rem;
+            color: #bbb;
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.9;
+            letter-spacing: 0.3px;
+        }
+
+        /* === Success Modal === */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 32, 39, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+        .success-box {
+            background: #fff;
+            padding: 52px 48px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeInUp 0.35s cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-badge {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .success-badge::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            width: 8px;
+            height: 1.5px;
+            background: var(--primary-color);
+            transform: rotate(45deg);
+        }
+
+        .success-badge::after {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 17px;
+            width: 14px;
+            height: 1.5px;
+            background: var(--primary-color);
+            transform: rotate(-45deg);
+        }
+
+        .success-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .success-box p {
+            color: #888;
+            line-height: 1.9;
+            font-size: 0.82rem;
+            margin-bottom: 30px;
+        }
+
+        .success-box a {
+            display: inline-block;
+            padding: 11px 28px;
+            border: 1.5px solid var(--primary-color);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background 0.22s, color 0.22s;
+            border-radius: 2px;
+        }
+
+        .success-box a:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header id="header" class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-jp">株式会社エースロジジャパン</span>
+                <span class="logo-en">ACE LOGI JAPAN</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#services">事業内容</a>
+                <a href="catalog.html">製品カタログ</a>
+                <a href="index.html#company">会社概要</a>
+                <a href="index.html#contact" class="btn-nav">お問い合わせ</a>
+            </nav>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="index.html#services" class="mobile-link">事業内容</a>
+            <a href="catalog.html" class="mobile-link">製品カタログ</a>
+            <a href="index.html#company" class="mobile-link">会社概要</a>
+            <a href="index.html#contact" class="mobile-link btn-nav-mobile">お問い合わせ</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="est-header">
+        <div class="container">
+            <div class="est-header-inner">
+                <div class="est-header-left">
+                    <div class="est-header-en">ESTIMATE</div>
+                    <div class="est-header-ja">お見積り・お問い合わせ</div>
+                </div>
+                <div class="est-header-note">
+                    ご希望の製品をリストに追加して、まとめてお問い合わせいただけます。<br>
+                    担当者より3営業日以内にご連絡いたします。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Estimate Section -->
+    <section class="est-body">
+        <div class="container">
+            <div class="est-layout">
+
+                <!-- Left: Product List -->
+                <div class="est-list-panel">
+                    <div class="est-list-header">
+                        <span class="est-list-title">SELECTED ITEMS</span>
+                        <span class="est-list-total">合計 <strong id="total-items-count">0</strong> 点</span>
+                    </div>
+                    <ul class="est-product-list" id="estimate-product-list">
+                    </ul>
+                    <div class="est-list-footer">
+                        <a href="catalog.html" class="est-back-link">カタログに戻る</a>
+                    </div>
+                </div>
+
+                <!-- Right: Inquiry Form -->
+                <div class="est-form-panel">
+                    <div class="est-form-header">
+                        <div class="est-form-title">INQUIRY FORM</div>
+                    </div>
+                    <div class="est-form-body">
+                        <p class="est-form-lead">
+                            下記フォームにご記入の上、送信してください。担当者より折り返しご連絡いたします。<br>
+                            <span class="req-note">※</span> は必須項目です。
+                        </p>
+
+                        <form id="estimate-form" onsubmit="submitEstimate(event)">
+
+                            <div class="est-section-heading">Customer Info — お客様情報</div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="company-name">会社名・施設名 <span class="req">必須</span></label>
+                                    <input type="text" id="company-name" name="company" placeholder="株式会社○○フィットネス"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="person-name">担当者名 <span class="req">必須</span></label>
+                                    <input type="text" id="person-name" name="name" placeholder="山田 太郎" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">メールアドレス <span class="req">必須</span></label>
+                                    <input type="email" id="email" name="email" placeholder="info@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">電話番号 <span class="req">必須</span></label>
+                                    <input type="tel" id="phone" name="phone" placeholder="03-1234-5678" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">住所・都道府県</label>
+                                <input type="text" id="address" name="address" placeholder="東京都新宿区○○1-2-3">
+                            </div>
+
+                            <div class="est-section-heading">Installation — 導入環境</div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="facility-type">施設の種類</label>
+                                    <select id="facility-type" name="facility_type">
+                                        <option value="">選択してください</option>
+                                        <option value="gym">フィットネスジム</option>
+                                        <option value="hotel">ホテル</option>
+                                        <option value="rehab">リハビリ施設</option>
+                                        <option value="school">学校・大学</option>
+                                        <option value="sports">スポーツクラブ</option>
+                                        <option value="corporate">企業内施設</option>
+                                        <option value="other">その他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="installation-floor">設置フロア</label>
+                                    <select id="installation-floor" name="floor">
+                                        <option value="">選択してください</option>
+                                        <option value="basement">地下</option>
+                                        <option value="1f">1階</option>
+                                        <option value="2f">2階</option>
+                                        <option value="3f">3階</option>
+                                        <option value="4f+">4階以上</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>エレベーターの有無</label>
+                                <div class="radio-group">
+                                    <label class="radio-option"><input type="radio" name="elevator"
+                                            value="yes"><span>あり</span></label>
+                                    <label class="radio-option"><input type="radio" name="elevator"
+                                            value="no"><span>なし</span></label>
+                                    <label class="radio-option"><input type="radio" name="elevator"
+                                            value="unknown"><span>不明</span></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>組み立て・設置作業</label>
+                                <div class="radio-group">
+                                    <label class="radio-option"><input type="radio" name="installation"
+                                            value="delivery_only"><span>搬入のみ</span></label>
+                                    <label class="radio-option"><input type="radio" name="installation"
+                                            value="with_installation"><span>搬入＋組立・設置</span></label>
+                                    <label class="radio-option"><input type="radio" name="installation"
+                                            value="undecided"><span>未定</span></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>旧機器の撤去・廃棄</label>
+                                <div class="radio-group">
+                                    <label class="radio-option"><input type="radio" name="disposal"
+                                            value="yes"><span>希望する</span></label>
+                                    <label class="radio-option"><input type="radio" name="disposal"
+                                            value="no"><span>希望しない</span></label>
+                                    <label class="radio-option"><input type="radio" name="disposal"
+                                            value="undecided"><span>未定</span></label>
+                                </div>
+                            </div>
+
+                            <div class="est-section-heading">Other — その他</div>
+
+                            <div class="form-group">
+                                <label for="timeline">導入希望時期</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">選択してください</option>
+                                    <option value="asap">できるだけ早く</option>
+                                    <option value="1month">1ヶ月以内</option>
+                                    <option value="3months">3ヶ月以内</option>
+                                    <option value="6months">6ヶ月以内</option>
+                                    <option value="undecided">未定</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">ご質問・ご要望</label>
+                                <textarea id="message" name="message" rows="5"
+                                    placeholder="ご要望・ご質問・補足事項などをご自由にご記入ください。"></textarea>
+                            </div>
+
+                            <input type="hidden" id="selected-products-data" name="selected_products">
+
+                            <button type="submit" class="est-submit-btn" id="btn-submit">
+                                Send Inquiry — 送信する
+                            </button>
+
+                            <p class="est-form-note">
+                                送信いただいた内容は、お見積りのご対応のみに使用いたします。<br>
+                                お客様の個人情報は厳重に管理いたします。
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-box">
+            <div class="success-badge"></div>
+            <h3>SENT</h3>
+            <p>
+                お問い合わせありがとうございます。<br>
+                担当者より3営業日以内にご連絡いたします。<br>
+                しばらくお待ちください。
+            </p>
+            <a href="catalog.html">カタログに戻る</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-jp">株式会社エースロジジャパン</div>
+                    <p class="footer-address">〒207-0015<br>東京都東大和市仲原３丁目２番地の８</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#hero">トップ</a>
+                    <a href="index.html#services">事業内容</a>
+                    <a href="catalog.html">製品カタログ</a>
+                    <a href="index.html#company">会社概要</a>
+                    <a href="index.html#contact">お問い合わせ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ace Logi Japan Co., Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu-btn').classList.toggle('active');
+            document.getElementById('mobile-nav').classList.toggle('active');
+        });
+
+        function loadEstimateList() {
+            const cart = JSON.parse(localStorage.getItem('estimateCart') || '[]');
+            const listEl = document.getElementById('estimate-product-list');
+            const totalEl = document.getElementById('total-items-count');
+            const submitBtn = document.getElementById('btn-submit');
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `
+                    <li class="est-empty-msg">
+                        まだ製品が選択されていません。<br>
+                        <a href="catalog.html">カタログから製品を追加してください</a>
+                    </li>`;
+                totalEl.textContent = '0';
+                submitBtn.disabled = true;
+                submitBtn.textContent = '製品を選択してから送信してください';
+                return;
+            }
+
+            listEl.innerHTML = '';
+            let totalQty = 0;
+            cart.forEach((item, idx) => {
+                totalQty += item.qty;
+                const li = document.createElement('li');
+                li.className = 'est-product-item';
+                li.innerHTML = `
+                    <div class="est-item-num">${String(idx + 1).padStart(2, '0')}</div>
+                    <div class="est-item-info">
+                        <div class="est-item-name">${item.name}</div>
+                        <div class="est-item-series">${item.series || ''}</div>
+                    </div>
+                    <div class="est-item-qty">
+                        <button class="est-qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+                        <span class="est-qty-num">${item.qty}</span>
+                        <button class="est-qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                    </div>
+                    <button class="est-item-remove" onclick="removeItem(${idx})" title="削除">×</button>
+                `;
+                listEl.appendChild(li);
+            });
+
+            totalEl.textContent = totalQty;
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Inquiry — 送信する';
+            document.getElementById('selected-products-data').value = JSON.stringify(cart);
+        }
+
+        function changeQty(idx, delta) {
+            let cart = JSON.parse(localStorage.getItem('estimateCart') || '[]');
+            cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+            localStorage.setItem('estimateCart', JSON.stringify(cart));
+            loadEstimateList();
+        }
+
+        function removeItem(idx) {
+            let cart = JSON.parse(localStorage.getItem('estimateCart') || '[]');
+            cart.splice(idx, 1);
+            localStorage.setItem('estimateCart', JSON.stringify(cart));
+            loadEstimateList();
+        }
+
+        function submitEstimate(e) {
+            e.preventDefault();
+            const cart = JSON.parse(localStorage.getItem('estimateCart') || '[]');
+            if (cart.length === 0) {
+                alert('製品が選択されていません。カタログから製品を選んでください。');
+                return;
+            }
+            document.getElementById('success-overlay').classList.add('show');
+            localStorage.removeItem('estimateCart');
+        }
+
+        loadEstimateList();
+    </script>
+</body>
+
+</html>
