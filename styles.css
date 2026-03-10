@@ -366,13 +366,21 @@ img {
     padding: 30px 0;
     border-top: 1px solid rgba(26, 24, 22, 0.08);
     transform: translateY(-110%);
-    transition: transform var(--transition-mid) var(--ease-out-expo);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform var(--transition-mid) var(--ease-out-expo),
+                opacity var(--transition-mid) var(--ease-out-expo),
+                visibility var(--transition-mid) var(--ease-out-expo);
     z-index: 9999;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .mobile-nav.active {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .mobile-link {
