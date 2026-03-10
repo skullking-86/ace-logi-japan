@@ -171,7 +171,8 @@ ul {
 .header-logo-img {
     height: 40px;
     width: auto;
-    filter: invert(0); /* Black original image, invert if needed. The background is white so black is good. */
+    filter: invert(0);
+    /* Black original image, invert if needed. The background is white so black is good. */
 }
 
 .logo-text {
@@ -578,7 +579,7 @@ ul {
         line-height: 1.6;
         margin-bottom: 15px;
     }
-    
+
     .service-features {
         margin-top: 15px;
         padding-top: 15px;
@@ -587,12 +588,12 @@ ul {
     .service-features li {
         font-size: 0.85rem;
     }
-    
+
     .service-brand {
         font-size: 0.75rem;
         padding: 6px 12px;
     }
-    
+
     .service-visit-label {
         font-size: 0.8rem;
     }
@@ -1410,6 +1411,7 @@ ul {
         bottom: 100px;
     }
 }
+
 /* =========================================================================
    Equipment Selection Modal
    ========================================================================= */
@@ -1602,10 +1604,11 @@ ul {
 .intro-logo {
     width: 300px;
     max-width: 80%;
-    filter: invert(1) brightness(2); /* White for the dark hero background */
+    filter: invert(1) brightness(2);
+    /* White for the dark hero background */
     opacity: 0;
     transform: translateX(-100vw);
-    animation: logoSlideInAndOut 3.2s cubic-bezier(0.25, 1, 0.3, 1) forwards;
+    animation: logoSlideInAndOut 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes logoSlideInAndOut {
@@ -1613,31 +1616,35 @@ ul {
         opacity: 0;
         transform: translateX(-50vw);
     }
-    15% {
+
+    30% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(-10vw);
     }
+
     70% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(10vw);
     }
+
     100% {
         opacity: 0;
         transform: translateX(50vw);
-        filter: blur(5px) invert(1) brightness(2);
+        filter: invert(1) brightness(2);
     }
 }
 
 .hero-anim-up {
     animation: elegantEntrance 1.8s cubic-bezier(0.25, 1, 0.3, 1) forwards;
     opacity: 0;
-    animation-delay: 2.8s; /* Start fading in as logo fades out */
+    animation-delay: 0.8s;
+    /* Start fading in as logo fades out */
 }
 
 .hero-delay-1 {
-    animation-delay: 3.1s;
+    animation-delay: 1.0s;
 }
 
 .hero-delay-2 {
-    animation-delay: 3.4s;
+    animation-delay: 1.2s;
 }
