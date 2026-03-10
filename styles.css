@@ -1042,6 +1042,25 @@ img {
         flex: 0 0 85%;
         scroll-snap-align: center;
     }
+    
+    /* Disable hover effects on touch/mobile swipe */
+    .service-card-wide:hover {
+        transform: none;
+        box-shadow: var(--shadow-soft);
+    }
+    .service-card-wide:hover .service-image-wide {
+        transform: none;
+    }
+    .service-card-wide:hover .service-image-overlay {
+        opacity: 1; /* Reset to gradient */
+    }
+    .service-card-wide:hover .service-visit-label {
+        color: var(--text-muted);
+        transform: none;
+    }
+    .service-card-wide:hover .service-name {
+        color: var(--primary-color);
+    }
 
     .section-title {
         font-size: 2.6rem;
