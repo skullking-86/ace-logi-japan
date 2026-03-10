@@ -653,7 +653,7 @@ img {
 
 @media (max-width: 900px) {
     .about::before { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; position: relative; }
     .about-image-wrap img { height: 320px; }
     .about-stat-num { font-size: 1.8rem; }
 }
@@ -776,13 +776,42 @@ img {
 
 @media (max-width: 900px) {
     .flow-steps {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        padding-bottom: 24px;
+        -webkit-overflow-scrolling: touch;
+        scroll-padding-inline: 5%;
+        margin-inline: -1rem;
+        padding-inline: 1rem;
+    }
+    .flow-steps::-webkit-scrollbar {
+        height: 6px;
+    }
+    .flow-steps::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.05);
+        border-radius: 4px;
+    }
+    .flow-steps::-webkit-scrollbar-thumb {
+        background: rgba(44, 94, 255, 0.4);
+        border-radius: 4px;
+    }
+    .step-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
     }
     .step-connector {
-        padding: 12px 0;
-        padding-top: 12px;
-        transform: rotate(90deg);
+        flex: 0 0 auto;
+        padding: 0;
+        transform: none !important;
+    }
+    .step-connector-line { display: none; }
+    .step-connector::after {
+        content: '→';
+        font-size: 2rem;
+        color: var(--gold);
+        opacity: 0.8;
     }
 }
 
@@ -1246,7 +1275,69 @@ img {
     .hero-quote-mark { font-size: 5rem; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
     .btn { width: 100%; justify-content: center; }
-    .about-stat-strip { grid-template-columns: 1fr; }
-    .flow-steps { grid-template-columns: 1fr; }
-    .step-connector { transform: rotate(90deg) !important; padding: 8px 0; }
+    
+    /* Header optimization */
+    .logo { font-size: 0.95rem; gap: 8px; }
+    .logo img { height: 28px; }
+    .header { height: 60px; }
+    
+    /* Search input */
+    .search-input { padding: 12px 18px; font-size: 0.85rem; }
+    .search-wrap { margin-top: 24px; }
+    
+    /* About Us - Sophisticated Card Overlay */
+    .about { padding-block: 0 80px; }
+    .about-grid { display: flex; flex-direction: column; padding-block: 0; position: relative; }
+    
+    .about-image-wrap { 
+        order: -1; 
+        position: relative; 
+        top: auto; left: auto; right: auto; bottom: auto;
+        opacity: 1; 
+        mix-blend-mode: normal; 
+        z-index: 0;
+        width: 100vw;
+        height: 380px;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+    .about-image-wrap img { height: 100%; width: 100%; object-fit: cover; border-radius: 0 !important; }
+    .about-image-wrap::before { display: none; }
+    
+    .about-text-inner { 
+        order: 1;
+        position: relative; 
+        z-index: 2; 
+        background: var(--bg-white);
+        padding: 40px 24px;
+        margin-top: -60px; /* overlapping effect */
+        border-radius: var(--radius-lg);
+        box-shadow: 0 12px 40px rgba(10,15,46,0.06);
+    }
+    
+    /* About Us - Stats Row (Horizontal) */
+    .about-stat-strip { 
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px; 
+        margin-top: 32px;
+    }
+    .about-stat { padding: 16px 8px; }
+    .about-stat-num { font-size: 1.35rem; }
+    .about-stat-num span { font-size: 0.8rem; }
+    .about-stat-label { font-size: 0.65rem; margin-top: 4px; }
+    
+    /* Features - Staggered layout */
+    .feature-row, .feature-row.reverse { gap: 16px; margin-bottom: 72px; padding-inline: 4px; }
+    .feature-image-wrap img { height: 260px; box-shadow: 0 10px 30px rgba(10,15,46,0.08); }
+    
+    .feature-number { font-size: 4rem; position: relative; z-index: 2; margin-bottom: -24px; color: var(--navy); opacity: 0.15; }
+    
+    .feature-row:nth-child(odd) .feature-number { margin-left: 12px; }
+    .feature-row:nth-child(odd) .feature-text { padding-right: 16px; }
+    
+    .feature-row:nth-child(even) .feature-number { text-align: right; margin-right: 12px; }
+    .feature-row:nth-child(even) .feature-title { text-align: right; }
+    .feature-row:nth-child(even) .feature-sep { margin-left: auto; }
+    .feature-row:nth-child(even) .feature-text { padding-left: 16px; text-align: right; }
 }
