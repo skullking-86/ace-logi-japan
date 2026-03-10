@@ -356,8 +356,8 @@ ul {
 
 /* --- Wide Card List Container --- */
 .services-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 32px;
     margin-top: 50px;
 }
@@ -380,9 +380,8 @@ ul {
 /* --- Wide Card Link: photo-left text-right --- */
 .service-card-link-wide {
     display: flex;
-    flex-direction: row;
-    min-height: 260px;
-    height: auto;
+    flex-direction: column;
+    height: 100%;
     color: inherit;
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -391,13 +390,13 @@ ul {
 
 /* Reverse: photo-right text-left */
 .service-card-link-wide--reverse {
-    flex-direction: row-reverse;
+    flex-direction: column;
 }
 
 /* --- Photo Panel --- */
 .service-image-wide {
-    width: 42%;
-    min-height: 260px;
+    width: 100%;
+    height: 240px;
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
@@ -542,24 +541,52 @@ ul {
 
 /* --- Responsive: stack vertically on mobile --- */
 @media (max-width: 768px) {
-
-    .service-card-link-wide,
-    .service-card-link-wide--reverse {
-        flex-direction: column;
-        height: auto;
+    .services-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 
     .service-image-wide {
-        width: 100%;
-        height: 220px;
+        height: 140px;
     }
 
     .service-content-wide {
-        padding: 24px 22px;
+        padding: 15px;
     }
 
     .service-name {
-        font-size: 1.25rem;
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .service-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+    
+    .service-features {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .service-features li {
+        font-size: 0.75rem;
+    }
+    
+    .service-brand {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+    
+    .service-visit-label {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-list {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
