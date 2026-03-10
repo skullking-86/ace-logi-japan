@@ -163,6 +163,19 @@ ul {
 
 .logo {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo-img {
+    height: 40px;
+    width: auto;
+    filter: invert(0); /* Black original image, invert if needed. The background is white so black is good. */
+}
+
+.logo-text {
+    display: flex;
     flex-direction: column;
 }
 
@@ -170,6 +183,7 @@ ul {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-color);
+    line-height: 1.2;
 }
 
 .logo-en {
@@ -1566,4 +1580,64 @@ ul {
     .equipment-modal-content {
         padding: 30px 20px;
     }
+}
+
+
+/* =========================================================================
+   Hero Logo Introduction Animation
+   ========================================================================= */
+.hero-intro-anim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.intro-logo {
+    width: 300px;
+    max-width: 80%;
+    filter: invert(1) brightness(2); /* White for the dark hero background */
+    opacity: 0;
+    transform: translateX(-100vw);
+    animation: logoSlideInAndOut 3.2s cubic-bezier(0.25, 1, 0.3, 1) forwards;
+}
+
+@keyframes logoSlideInAndOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    70% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50vw);
+        filter: blur(5px) invert(1) brightness(2);
+    }
+}
+
+.hero-anim-up {
+    animation: elegantEntrance 1.8s cubic-bezier(0.25, 1, 0.3, 1) forwards;
+    opacity: 0;
+    animation-delay: 2.8s; /* Start fading in as logo fades out */
+}
+
+.hero-delay-1 {
+    animation-delay: 3.1s;
+}
+
+.hero-delay-2 {
+    animation-delay: 3.4s;
 }
