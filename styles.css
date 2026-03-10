@@ -367,7 +367,8 @@ img {
     border-top: 1px solid rgba(26, 24, 22, 0.08);
     transform: translateY(-110%);
     transition: transform var(--transition-mid) var(--ease-out-expo);
-    z-index: 999;
+    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .mobile-nav.active {
@@ -1104,6 +1105,8 @@ img {
 
     .contact.section {
         padding-bottom: 120px; /* フローティングカートへの被り防止 */
+        position: relative;
+        z-index: 10;
     }
 
     .intro-logo {
