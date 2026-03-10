@@ -524,29 +524,43 @@ ul {
 
 @media (max-width: 900px) {
     .store-list {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 25px;
+        -webkit-overflow-scrolling: touch;
+        gap: 15px;
+        scrollbar-width: none;
+        margin-top: 20px;
+    }
+    .store-list::-webkit-scrollbar {
+        display: none;
     }
     
     .store-card {
-        padding: 24px;
-        gap: 20px;
+        scroll-snap-align: center;
+        flex: 0 0 85%;
+        max-width: 350px;
+        padding: 20px;
+        gap: 15px;
     }
 
     .store-img {
-        height: 180px;
+        height: 160px;
     }
     
     .store-name {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .store-desc {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
     
     .store-btn {
-        padding: 14px 0;
-        font-size: 1rem;
+        padding: 12px 0;
+        font-size: 0.95rem;
     }
 
     .store-card::before {
@@ -708,37 +722,48 @@ ul {
 
 @media (max-width: 900px) {
     .flow-steps {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 30px;
+        -webkit-overflow-scrolling: touch;
+        align-items: stretch;
+        gap: 15px;
+        /* Hide scrollbar for a cleaner look */
+        scrollbar-width: none;
     }
-
-    .step-arrow {
-        transform: rotate(90deg);
-        margin: 10px 0;
-        animation: floatVertical 2s ease-in-out infinite;
-        font-size: 2.5rem;
+    .flow-steps::-webkit-scrollbar {
+        display: none;
     }
 
     .step-card {
-        width: 100%;
-        max-width: 500px;
-        padding: 40px 30px;
+        scroll-snap-align: center;
+        flex: 0 0 85%;
+        max-width: none;
+        padding: 30px 20px;
     }
     
+    .step-arrow {
+        flex: 0 0 auto;
+        transform: rotate(0deg) !important;
+        animation: floatHorizontal 2s ease-in-out infinite !important;
+        font-size: 1.8rem;
+        margin: auto 0;
+    }
+
     .step-number {
-        font-size: 1.1rem;
-        padding: 8px 20px;
-        margin-bottom: 20px;
-    }
-    
-    .step-title {
-        font-size: 1.4rem;
+        font-size: 1rem;
+        padding: 6px 16px;
         margin-bottom: 15px;
     }
     
+    .step-title {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
     .step-desc {
-        font-size: 1rem;
+        font-size: 0.95rem;
         line-height: 1.6;
     }
 }
@@ -853,31 +878,45 @@ ul {
     .feature-row,
     .feature-row.reverse {
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        padding: 20px;
+        margin: 0 5px;
     }
 
     .feature-image img {
-        height: 300px;
+        height: 200px;
+        border-radius: 12px;
+    }
+    
+    /* remove ::after pseudo element gradient on mobile to look cleaner */
+    .feature-image::after {
+        display: none;
     }
 
     .feature-text {
-        text-align: center;
-        padding: 0;
+        text-align: left;
+        padding: 0 5px;
     }
 
     .feature-title {
-        font-size: 2rem;
-        margin-bottom: 20px;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
     }
 
     .feature-title::after {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
+        width: 40px;
+        bottom: -8px;
     }
     
     .feature-desc {
-        font-size: 1.1rem;
-        margin-top: 25px;
+        font-size: 0.95rem;
+        margin-top: 15px;
+        line-height: 1.6;
     }
 }
 
