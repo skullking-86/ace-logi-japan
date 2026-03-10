@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap"
         rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -48,18 +48,19 @@
         </div>
     </header>
 
+    <!-- Logo Intro Animation (Fujiya-style: smooth fade overlay) -->
+    <div class="hero-intro-anim" id="heroIntro" aria-hidden="true">
+        <img src="images/alj-logo-mono.png" alt="Ace Logi Japan" class="intro-logo">
+    </div>
+
     <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="hero-overlay"></div>
-        
-        <div class="hero-intro-anim">
-            <img src="images/alj-logo-mono.png" alt="Ace Logi Japan" class="intro-logo">
-        </div>
 
         <div class="container hero-content">
-            <h1 class="hero-title hero-anim-up">フィットネスの未来を、<br>裏側から支える。</h1>
-            <p class="hero-subtitle hero-anim-up hero-delay-1">機器のメンテナンスからロジスティクスまで、<br>ワンストップで最適なソリューションを提供します。</p>
-            <div class="hero-actions hero-anim-up hero-delay-2">
+            <h1 class="hero-title hero-anim-up hero-delay-1">フィットネスの未来を、<br>裏側から支える。</h1>
+            <p class="hero-subtitle hero-anim-up hero-delay-2">機器のメンテナンスからロジスティクスまで、<br>ワンストップで最適なソリューションを提供します。</p>
+            <div class="hero-actions hero-anim-up hero-delay-3">
                 <a href="#services" class="btn btn-primary">事業内容を見る</a>
                 <a href="#contact" class="btn btn-outline-light">ご相談はこちら</a>
             </div>
@@ -70,7 +71,8 @@
     <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container">
-            <div class="section-header text-center animate-up reveal">
+            <div class="section-header text-center reveal">
+                <span class="section-eyebrow">What We Do</span>
                 <h2 class="section-title">SERVICES</h2>
                 <p class="section-subtitle">事業内容</p>
                 <div class="divider"></div>
@@ -78,9 +80,9 @@
 
             <div class="services-list">
                 <!-- Service 1: Harikaeou -->
-                <div class="service-card-wide animate-up reveal delay-1">
+                <div class="service-card-wide reveal delay-1">
                     <a href="https://harikaeou.co.jp/" target="_blank" class="service-card-link-wide">
-                        <div class="service-image-wide harikaeou-bg">
+                        <div class="service-image-wide harikaeou-bg parallax-img">
                             <div class="service-image-overlay"></div>
                         </div>
                         <div class="service-content-wide">
@@ -102,10 +104,10 @@
                 </div>
 
                 <!-- Service 2: Logiking -->
-                <div class="service-card-wide animate-up reveal delay-2">
+                <div class="service-card-wide reveal delay-2">
                     <a href="https://fitnesslogi.co.jp/" target="_blank"
                         class="service-card-link-wide service-card-link-wide--reverse">
-                        <div class="service-image-wide logiking-bg">
+                        <div class="service-image-wide logiking-bg parallax-img">
                             <div class="service-image-overlay"></div>
                         </div>
                         <div class="service-content-wide">
@@ -127,9 +129,9 @@
                 </div>
 
                 <!-- Service 3: Gymsta Kingdom -->
-                <div class="service-card-wide animate-up reveal delay-3">
+                <div class="service-card-wide reveal delay-1">
                     <a href="gymsta-kingdom.html" class="service-card-link-wide">
-                        <div class="service-image-wide gymsta-bg">
+                        <div class="service-image-wide gymsta-bg parallax-img">
                             <div class="service-image-overlay"></div>
                         </div>
                         <div class="service-content-wide">
@@ -151,10 +153,10 @@
                 </div>
 
                 <!-- Service 4: Equipment Sales -->
-                <div class="service-card-wide animate-up reveal delay-3">
+                <div class="service-card-wide reveal delay-2">
                     <a href="javascript:void(0)" onclick="openEquipmentModal()"
                         class="service-card-link-wide service-card-link-wide--reverse">
-                        <div class="service-image-wide impulse-bg">
+                        <div class="service-image-wide impulse-bg parallax-img">
                             <div class="service-image-overlay"></div>
                         </div>
                         <div class="service-content-wide">
@@ -181,13 +183,14 @@
     <!-- Company Profile Section -->
     <section id="company" class="company section bg-light">
         <div class="container">
-            <div class="section-header text-center animate-up reveal">
+            <div class="section-header text-center reveal">
+                <span class="section-eyebrow">About Us</span>
                 <h2 class="section-title">COMPANY</h2>
                 <p class="section-subtitle">会社概要</p>
                 <div class="divider"></div>
             </div>
 
-            <div class="company-wrapper animate-up reveal delay-1">
+            <div class="company-wrapper reveal delay-1">
                 <table class="company-table">
                     <tbody>
                         <tr>
@@ -226,7 +229,8 @@
     <!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
-            <div class="section-header text-center animate-up reveal">
+            <div class="section-header text-center reveal">
+                <span class="section-eyebrow">Get in Touch</span>
                 <h2 class="section-title">CONTACT</h2>
                 <p class="section-subtitle">お問い合わせ</p>
                 <div class="divider"></div>
@@ -235,7 +239,7 @@
                 </p>
             </div>
 
-            <div class="contact-form-wrapper animate-up reveal delay-1">
+            <div class="contact-form-wrapper reveal delay-1">
                 <!-- Form action set to mailto to open default mail client -->
                 <form class="contact-form" action="mailto:info@harikaeou.co.jp" method="POST" enctype="text/plain">
                     <div class="form-group">

@@ -1,91 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Mobile Menu Toggle ---
+    // =========================================================================
+    // Intro Animation — Remove overlay after animation completes
+    // =========================================================================
+    const introEl = document.getElementById('heroIntro');
+    if (introEl) {
+        // CSS animation is 2.4s; remove from DOM cleanly after completion
+        setTimeout(() => {
+            introEl.style.opacity = '0';
+            introEl.style.pointerEvents = 'none';
+            setTimeout(() => { introEl.style.display = 'none'; }, 100);
+        }, 2500);
+    }
+
+    // =========================================================================
+    // Mobile Menu Toggle
+    // =========================================================================
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-    });
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+    }
 
-    // Close mobile menu when a link is clicked
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            mobileNav.classList.remove('active');
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+            if (mobileNav) mobileNav.classList.remove('active');
         });
     });
 
-    // --- Header Scroll Effect ---
+    // =========================================================================
+    // Header: transparent on hero, opaque once scrolled past it
+    // =========================================================================
     const header = document.getElementById('header');
+    const hero = document.getElementById('hero');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
-            header.style.padding = '5px 0';
+    const updateHeader = () => {
+        if (!header) return;
+        // Become opaque once scrolled 80px (well into the hero)
+        if (window.scrollY > 80) {
+            header.classList.add('scrolled');
         } else {
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            header.style.padding = '0';
+            header.classList.remove('scrolled');
         }
-    });
+    };
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader(); // run on load
 
-    // --- Smooth Scrolling for Anchor Links ---
+    // =========================================================================
+    // Smooth Scrolling for Anchor Links
+    // =========================================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-
             const targetElement = document.querySelector(targetId);
-
             if (targetElement) {
-                // Adjust scroll position to account for fixed header
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                e.preventDefault();
+                const headerHeight = header ? header.offsetHeight : 72;
+                const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             }
         });
     });
 
-    // --- Scroll Reveal Animation ---
-    const revealElements = document.querySelectorAll('.reveal');
+    // =========================================================================
+    // Scroll Reveal — IntersectionObserver
+    // =========================================================================
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .animate-up');
 
-    const revealOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.06,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // =========================================================================
+    // Parallax — subtle background-position shift on scroll
+    // =========================================================================
+    const parallaxImgs = document.querySelectorAll('.parallax-img');
+
+    const onParallaxScroll = () => {
+        parallaxImgs.forEach(img => {
+            const rect = img.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            const ratio = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            const offset = (ratio - 0.5) * 36;
+            img.style.backgroundPositionY = `calc(50% + ${offset}px)`;
+        });
     };
 
-    const revealOnScroll = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return;
-            } else {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, revealOptions);
+    window.addEventListener('scroll', onParallaxScroll, { passive: true });
+    onParallaxScroll();
 
-    revealElements.forEach(el => {
-        revealOnScroll.observe(el);
-    });
+    // =========================================================================
+    // Cart init
+    // =========================================================================
+    updateCartUI();
 });
 
-// --- Catalog Series Filter ---
+// =========================================================================
+// Catalog Series Filter
+// =========================================================================
 function filterCatalog(series) {
-    // Update active tab
     document.querySelectorAll('.catalog-tab').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 
-    // Show/hide categories
     document.querySelectorAll('.catalog-category').forEach(category => {
         const categorySeries = category.getAttribute('data-series');
         if (series === 'all' || categorySeries === series) {
@@ -99,8 +131,6 @@ function filterCatalog(series) {
 // =========================================================================
 // Estimate Cart System
 // =========================================================================
-
-// Load cart from localStorage
 function getCart() {
     return JSON.parse(localStorage.getItem('estimateCart') || '[]');
 }
@@ -109,13 +139,10 @@ function saveCart(cart) {
     localStorage.setItem('estimateCart', JSON.stringify(cart));
 }
 
-// Add product to estimate cart
 function addToEstimate(btn) {
     const catalogItem = btn.closest('.catalog-item');
     const nameEl = catalogItem.querySelector('.catalog-name');
     const name = nameEl ? nameEl.textContent.trim() : '不明な製品';
-
-    // Determine series from parent category
     const category = catalogItem.closest('.catalog-category');
     const series = category ? category.getAttribute('data-series') : '';
 
@@ -150,18 +177,14 @@ function showNotification() {
     setTimeout(() => notif.classList.remove('show'), 2000);
 }
 
-// Update the floating cart UI
 function updateCartUI() {
     const cart = getCart();
     const countEl = document.getElementById('cart-count');
     const cartItemsEl = document.getElementById('cart-items');
-
     if (!countEl || !cartItemsEl) return;
 
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     countEl.textContent = totalQty;
-
-    // Bump animation
     countEl.classList.add('bump');
     setTimeout(() => countEl.classList.remove('bump'), 300);
 
@@ -176,7 +199,6 @@ function updateCartUI() {
             </div>
         `).join('');
 
-        // Auto-expand cart when items are added
         const cartEl = document.getElementById('estimate-cart');
         if (cartEl && cartEl.classList.contains('collapsed')) {
             cartEl.classList.remove('collapsed');
@@ -184,24 +206,15 @@ function updateCartUI() {
     }
 }
 
-// Toggle cart open/close
 function toggleCart() {
     const cartEl = document.getElementById('estimate-cart');
     if (!cartEl) return;
     cartEl.classList.toggle('collapsed');
 }
 
-
-// Save cart data before navigating to estimate page
 function saveCartAndGo() {
-    // Cart is already in localStorage, just navigate
     return true;
 }
-
-// Initialize cart on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartUI();
-});
 
 // =========================================================================
 // Equipment Selection Modal
@@ -210,7 +223,7 @@ function openEquipmentModal() {
     const modal = document.getElementById('equipmentModal');
     if (modal) {
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     }
 }
 
@@ -222,9 +235,6 @@ function closeEquipmentModal() {
     }
 }
 
-// Close modal on escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeEquipmentModal();
-    }
+    if (e.key === 'Escape') closeEquipmentModal();
 });
