@@ -542,51 +542,45 @@ ul {
 /* --- Responsive: stack vertically on mobile --- */
 @media (max-width: 768px) {
     .services-list {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .service-image-wide {
-        height: 140px;
+        height: 220px;
     }
 
     .service-content-wide {
-        padding: 15px;
+        padding: 24px 22px;
     }
 
     .service-name {
-        font-size: 1rem;
-        margin-bottom: 8px;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
     }
 
     .service-desc {
-        font-size: 0.75rem;
-        line-height: 1.4;
-        margin-bottom: 10px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
     }
     
     .service-features {
-        margin-top: 10px;
-        padding-top: 10px;
+        margin-top: 15px;
+        padding-top: 15px;
     }
 
     .service-features li {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
     }
     
     .service-brand {
-        font-size: 0.6rem;
-        padding: 4px 8px;
+        font-size: 0.75rem;
+        padding: 6px 12px;
     }
     
     .service-visit-label {
-        font-size: 0.65rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .services-list {
-        grid-template-columns: 1fr 1fr;
+        font-size: 0.8rem;
     }
 }
 
