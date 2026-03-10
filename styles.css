@@ -1016,8 +1016,31 @@ img {
    ========================================================================= */
 @media (max-width: 960px) {
     .services-list {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 24px;
+        -webkit-overflow-scrolling: touch;
+        margin-inline: -5vw;
+        padding-inline: 5vw;
+    }
+    
+    .services-list::-webkit-scrollbar {
+        height: 6px;
+    }
+    .services-list::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.05);
+        border-radius: 4px;
+    }
+    .services-list::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 4px;
+    }
+
+    .service-card-wide {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
     }
 
     .section-title {
