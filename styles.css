@@ -1375,3 +1375,174 @@ ul {
         bottom: 100px;
     }
 }
+/* =========================================================================
+   Equipment Selection Modal
+   ========================================================================= */
+.equipment-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.equipment-modal.show {
+    display: flex;
+}
+
+.equipment-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 32, 39, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.equipment-modal-content {
+    position: relative;
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: elegantEntrance 0.5s ease-out;
+    z-index: 2;
+}
+
+.equipment-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2.2rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.equipment-modal-close:hover {
+    color: var(--primary-color);
+}
+
+.equipment-modal-title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+}
+
+.equipment-modal-desc {
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    font-size: 0.95rem;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.equipment-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    text-decoration: none;
+    color: inherit;
+}
+
+.equipment-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.impulse-marketing-bg {
+    background-image: url('images/impulse-marketing.jpg');
+}
+
+.livepro-bg {
+    background: linear-gradient(135deg, #1f2937 0%, #0f172a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.livepro-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+}
+
+.livepro-bg::after {
+    content: 'LIVEPRO';
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.06);
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.equipment-card-text {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: #fff;
+}
+
+.brand-logo-inline {
+    height: 32px;
+    width: auto;
+}
+
+.brand-text-inline {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1f2937;
+    letter-spacing: 1.5px;
+    line-height: 32px;
+    /* to align with logo height */
+}
+
+.equipment-card-text p {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .equipment-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .equipment-card-img {
+        height: 160px;
+    }
+
+    .equipment-modal-content {
+        padding: 30px 20px;
+    }
+}

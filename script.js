@@ -202,3 +202,29 @@ function saveCartAndGo() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
 });
+
+// =========================================================================
+// Equipment Selection Modal
+// =========================================================================
+function openEquipmentModal() {
+    const modal = document.getElementById('equipmentModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeEquipmentModal() {
+    const modal = document.getElementById('equipmentModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeEquipmentModal();
+    }
+});

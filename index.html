@@ -142,27 +142,26 @@
                     </a>
                 </div>
 
-                <!-- Service 4: Impulse -->
+                <!-- Service 4: Equipment Sales -->
                 <div class="service-card-wide animate-up reveal delay-3">
-                    <a href="catalog.html" class="service-card-link-wide service-card-link-wide--reverse">
+                    <a href="javascript:void(0)" onclick="openEquipmentModal()"
+                        class="service-card-link-wide service-card-link-wide--reverse">
                         <div class="service-image-wide impulse-bg">
                             <div class="service-image-overlay"></div>
                         </div>
                         <div class="service-content-wide">
                             <div class="service-header-row">
-                                <div class="service-brand service-brand-image">
-                                    <img src="images/impulse-logo.png" alt="impulse logo">
-                                </div>
-                                <span class="service-visit-label">製品カタログはこちら →</span>
+                                <div class="service-brand">器具販売</div>
+                                <span class="service-visit-label">カタログを見る →</span>
                             </div>
-                            <h3 class="service-name">IMPULSE正規代理店</h3>
+                            <h3 class="service-name">フィットネス器具販売</h3>
                             <p class="service-desc">
-                                高品質なimpulse製品の正規代理店として、マシンの品質とサポート体制を両立。施設に合わせた最適な機器選定から導入までトータルサポート。
+                                IMPULSE（インパルス）やLIVEPRO（ライブプロ）をはじめとした、施設に最適な高品質フィットネス機器をご提案。導入からアフターサポートまでトータルで支援します。
                             </p>
                             <ul class="service-features">
-                                <li><span class="icon">✓</span> 最新のimpulseマシンの取り扱い</li>
-                                <li><span class="icon">✓</span> 正規代理店ならではの安心サポート</li>
-                                <li><span class="icon">✓</span> 最適な機器構成のご提案</li>
+                                <li><span class="icon">✓</span> IMPULSE正規代理店としての安心サポート</li>
+                                <li><span class="icon">✓</span> LIVEPRO製品など各種お取り扱い</li>
+                                <li><span class="icon">✓</span> 施設規模やコンセプトに応じた最適な機器手配</li>
                             </ul>
                         </div>
                     </a>
@@ -286,6 +285,34 @@
             </div>
         </div>
     </footer>
+
+    <!-- Equipment Selection Modal -->
+    <div id="equipmentModal" class="equipment-modal">
+        <div class="equipment-modal-overlay" onclick="closeEquipmentModal()"></div>
+        <div class="equipment-modal-content">
+            <span class="equipment-modal-close" onclick="closeEquipmentModal()">&times;</span>
+            <h3 class="equipment-modal-title">メーカーを選択</h3>
+            <p class="equipment-modal-desc">カタログをご覧になりたいブランドをお選びください。</p>
+            <div class="equipment-grid">
+                <!-- Impulse -->
+                <a href="catalog.html" class="equipment-card">
+                    <div class="equipment-card-img impulse-marketing-bg"></div>
+                    <div class="equipment-card-text">
+                        <img src="images/impulse-logo.png" alt="IMPULSE" class="brand-logo-inline">
+                        <p style="color: var(--highlight); font-weight: 700;">IMPULSE カタログへ進む</p>
+                    </div>
+                </a>
+                <!-- LivePro -->
+                <a href="javascript:void(0)" onclick="alert('LIVEPROのカタログは現在準備中です。')" class="equipment-card">
+                    <div class="equipment-card-img livepro-bg"></div>
+                    <div class="equipment-card-text">
+                        <div class="brand-text-inline">LIVEPRO</div>
+                        <p style="color:var(--text-muted);font-weight:500;">COMING SOON</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
