@@ -1716,7 +1716,7 @@ img {
 .equipment-modal-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(26, 24, 22, 0.75);
+    background: rgba(26, 24, 22, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
