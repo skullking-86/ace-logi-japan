@@ -192,10 +192,11 @@ function updateCartUI() {
         cartItemsEl.innerHTML = '<p class="cart-empty-msg">製品を追加してください</p>';
     } else {
         cartItemsEl.innerHTML = cart.map((item, idx) => `
-            <div class="cart-item-row">
+            <div class="cart-item-row" style="position: relative;">
                 <span class="cart-item-index">${String(idx + 1).padStart(2, '0')}</span>
                 <span class="cart-item-name">${item.name}</span>
                 <span class="cart-item-qty">×${item.qty}</span>
+                <button class="cart-item-remove" onclick="removeFromCart(${idx})" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; color: #aaa;">×</button>
             </div>
         `).join('');
 
@@ -204,6 +205,13 @@ function updateCartUI() {
             cartEl.classList.remove('collapsed');
         }
     }
+}
+
+function removeFromCart(index) {
+    let cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    updateCartUI();
 }
 
 function toggleCart() {

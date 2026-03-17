@@ -9,17 +9,17 @@
     --highlight-hover: #C94035;
     --text-dark: #2A2826;
     --text-muted: #8A8480;
-    --text-light: #F9F7F3;
     --bg-beige: #F4F0EA;     /* Warm parchment */
     --bg-light: #EDEAE3;
     --bg-white: #F9F7F3;
     --bg-dark: #1A1816;
 
     --font-main: 'Inter', 'Noto Sans JP', sans-serif;
-    --font-heading: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    --font-heading: 'Oswald', 'Noto Sans JP', sans-serif;
 
     --transition-fast: 0.25s;
     --transition-mid: 0.5s;
+    --transition-slow: 0.8s;
     --transition-slow: 0.8s;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1622,6 +1622,7 @@ img {
     font-size: 0.72rem;
     font-family: var(--font-heading);
     flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .cart-empty-msg {
