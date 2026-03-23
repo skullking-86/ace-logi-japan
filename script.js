@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const introEl = document.getElementById('heroIntro');
     if (introEl) {
-        // CSS animation is 2.4s; remove from DOM cleanly after completion
+        // CSS animation is 4.0s; remove from DOM cleanly after completion
         setTimeout(() => {
             introEl.style.opacity = '0';
             introEl.style.pointerEvents = 'none';
             setTimeout(() => { introEl.style.display = 'none'; }, 100);
-        }, 2500);
+        }, 4100);
     }
 
     // =========================================================================
@@ -245,4 +245,29 @@ function closeEquipmentModal() {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeEquipmentModal();
+});
+
+// =========================================================================
+// Formspree Async Form Submission
+// =========================================================================
+document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    try {
+        const res = await fetch(form.action, {
+            method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+            form.reset();
+            document.getElementById('form-success').style.display = 'block';
+            document.getElementById('form-error').style.display = 'none';
+        } else {
+            document.getElementById('form-error').style.display = 'block';
+            document.getElementById('form-success').style.display = 'none';
+        }
+    } catch {
+        document.getElementById('form-error').style.display = 'block';
+        document.getElementById('form-success').style.display = 'none';
+    }
 });

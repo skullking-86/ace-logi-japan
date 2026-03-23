@@ -455,14 +455,14 @@ img {
     max-width: 700px;
 }
 
-/* Horizontal rule accent — synced with intro overlay (2.4s) */
+/* Horizontal rule accent — synced with intro overlay (4.0s) */
 .hero-rule {
     width: 40px;
     height: 1px;
     background: var(--highlight);
     margin-bottom: 28px;
     transform-origin: left;
-    animation: ruleExpand 1s var(--ease-out-expo) 2.0s both;
+    animation: ruleExpand 1s var(--ease-out-expo) 3.6s both;
 }
 
 @keyframes ruleExpand {
@@ -477,6 +477,8 @@ img {
     line-height: 1.12;
     margin-bottom: 24px;
     letter-spacing: 0.02em;
+    color: #ffffff;
+    opacity: 1;
 }
 
 .hero-subtitle {
@@ -503,7 +505,7 @@ img {
     justify-content: center;
     background: var(--bg-dark);
     z-index: 9999;
-    animation: introOverlay 2.4s var(--ease-in-out) forwards;
+    animation: introOverlay 4.0s var(--ease-in-out) forwards;
     pointer-events: none;
 }
 
@@ -517,7 +519,7 @@ img {
     width: 220px;
     max-width: 60vw;
     filter: invert(1) brightness(2);
-    animation: introLogo 2.4s var(--ease-out-expo) forwards;
+    animation: introLogo 4.0s var(--ease-out-expo) forwards;
     will-change: opacity, transform;
 }
 
@@ -533,10 +535,10 @@ img {
     animation: heroFadeUp 1.2s var(--ease-out-expo) both;
 }
 
-.hero-delay-0 { animation-delay: 1.9s; }
-.hero-delay-1 { animation-delay: 2.1s; }
-.hero-delay-2 { animation-delay: 2.3s; }
-.hero-delay-3 { animation-delay: 2.5s; }
+.hero-delay-0 { animation-delay: 3.5s; }
+.hero-delay-1 { animation-delay: 3.7s; }
+.hero-delay-2 { animation-delay: 3.9s; }
+.hero-delay-3 { animation-delay: 4.1s; }
 
 @keyframes heroFadeUp {
     from {
@@ -569,7 +571,7 @@ img {
     background-image: url('https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=2940&auto=format&fit=crop'); /* Warehouse image instead of Zalando boxes */
 }
 .gymsta-bg {
-    background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2940&auto=format&fit=crop');
+    background-image: url('images/Ex01Hx2.JPG');
 }
 .impulse-bg {
     background-image: url('images/impulse-bg.jpg');
@@ -1883,3 +1885,23 @@ img {
 .parallax-img {
     will-change: background-position;
 }
+
+/* =========================================================================
+   Footer Services Extension
+   ========================================================================= */
+.footer-col-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.footer-services a {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: var(--bg-beige);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-services a:hover { opacity: 1; }

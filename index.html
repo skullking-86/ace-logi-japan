@@ -7,10 +7,8 @@
     <title>株式会社エースロジジャパン | Ace Logi Japan</title>
     <meta name="description" content="株式会社エースロジジャパンは、フィットネス機器のレザー張替・修理「張替王」と、フィットネスロジスティクス「ロジキング」を展開しています。">
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -203,7 +201,12 @@
                         </tr>
                         <tr>
                             <th>事業内容</th>
-                            <td>フィットネス機器修繕事業（張替王）<br>フィットネス特化ロジスティクス事業（ロジキング）</td>
+                            <td>
+                                フィットネス機器修繕事業（張替王）<br>
+                                フィットネス特化ロジスティクス事業（ロジキング）<br>
+                                フィットネスジム運営事業（ジムスタ王国）<br>
+                                フィットネス器具販売事業（IMPULSE・LIVEPRO 取扱）
+                            </td>
                         </tr>
                         <tr>
                             <th>沿革</th>
@@ -240,8 +243,8 @@
             </div>
 
             <div class="contact-form-wrapper reveal delay-1">
-                <!-- Form action set to mailto to open default mail client -->
-                <form class="contact-form" action="mailto:info@harikaeou.co.jp" method="POST" enctype="text/plain">
+                <!-- Form action set to Formspree for async submission -->
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
                         <label for="name">お名前 <span class="required">必須</span></label>
                         <input type="text" id="name" name="name" placeholder="山田 太郎" required>
@@ -270,6 +273,12 @@
                     </div>
                     <div class="form-submit text-center">
                         <button type="submit" class="btn btn-primary btn-large">送信する</button>
+                        <p id="form-success" style="display:none; color:green; margin-top:1rem;">
+                            お問い合わせを受け付けました。担当者よりご連絡いたします。
+                        </p>
+                        <p id="form-error" style="display:none; color:red; margin-top:1rem;">
+                            送信に失敗しました。時間をおいて再度お試しください。
+                        </p>
                     </div>
                 </form>
             </div>
@@ -290,6 +299,13 @@
                     <a href="catalog.html">製品カタログ</a>
                     <a href="#company">会社概要</a>
                     <a href="#contact">お問い合わせ</a>
+                </div>
+                <div class="footer-services">
+                    <p class="footer-col-title">各事業サイト</p>
+                    <a href="https://harikaeou.co.jp/" target="_blank" rel="noopener">張替王</a>
+                    <a href="https://fitnesslogi.co.jp/" target="_blank" rel="noopener">ロジキング</a>
+                    <a href="gymsta-kingdom.html">ジムスタ王国</a>
+                    <a href="catalog.html">製品カタログ</a>
                 </div>
             </div>
             <div class="footer-bottom">
