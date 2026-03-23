@@ -1905,3 +1905,155 @@ img {
   transition: opacity 0.2s;
 }
 .footer-services a:hover { opacity: 1; }
+
+/* =========================================================================
+   Warranty Section
+   ========================================================================= */
+.warranty-section {
+  background-color: var(--bg-light);
+}
+
+.warranty-block {
+  margin-bottom: 60px;
+}
+
+.warranty-block-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dark);
+  border-left: 3px solid var(--highlight);
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+
+.warranty-lead {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.warranty-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.warranty-table th,
+.warranty-table td {
+  border: 1px solid #ddd8d0;
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.warranty-table thead th {
+  background-color: var(--primary-color);
+  color: var(--bg-beige);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.warranty-table tbody th {
+  background-color: var(--bg-beige);
+  font-weight: 500;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.warranty-period {
+  text-align: center;
+  font-weight: 600;
+  color: var(--highlight);
+  white-space: nowrap;
+}
+
+.warranty-tables-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.warranty-table-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.warranty-table--parts td:first-child {
+  color: var(--text-dark);
+}
+
+/* 修理の流れ */
+.repair-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.repair-step {
+  background: var(--bg-white);
+  border: 1px solid #ddd8d0;
+  border-radius: var(--border-radius);
+  padding: 20px 16px;
+}
+
+.repair-step-num {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--highlight);
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+
+.repair-step-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.repair-step p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 取り扱い項目リスト */
+.service-items-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.service-items-list li {
+  background: var(--bg-white);
+  border: 1px solid #ddd8d0;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .warranty-tables-wrap {
+    grid-template-columns: 1fr;
+  }
+  .repair-flow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .warranty-table tbody th {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .repair-flow {
+    grid-template-columns: 1fr;
+  }
+}
