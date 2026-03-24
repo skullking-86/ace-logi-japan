@@ -660,7 +660,7 @@
                             <span class="req-note">※</span> は必須項目です。
                         </p>
 
-                        <form id="estimate-form" action="mailto:info@harikaeou.co.jp" method="POST" enctype="text/plain"
+                        <form id="estimate-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
                             onsubmit="submitEstimate(event)">
 
                             <div class="est-section-heading">Customer Info — お客様情報</div>
@@ -899,19 +899,31 @@
             loadEstimateList();
         }
 
-        function submitEstimate(e) {
+        async function submitEstimate(e) {
+            e.preventDefault();
             const cart = JSON.parse(localStorage.getItem('estimateCart') || '[]');
             if (cart.length === 0) {
-                e.preventDefault();
                 alert('製品が選択されていません。カタログから製品を選んでください。');
                 return;
             }
 
-            // Allow default submission so mailto: triggers
-            setTimeout(() => {
-                document.getElementById('success-overlay').classList.add('show');
-                localStorage.removeItem('estimateCart');
-            }, 800);
+            const form = e.target;
+            const data = new FormData(form);
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    form.reset();
+                    document.getElementById('success-overlay').classList.add('show');
+                    localStorage.removeItem('estimateCart');
+                } else {
+                    alert('送信に失敗しました。時間をおいて再度お試しください。');
+                }
+            } catch {
+                alert('送信に失敗しました。時間をおいて再度お試しください。');
+            }
         }
 
         loadEstimateList();
