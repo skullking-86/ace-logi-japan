@@ -2076,18 +2076,42 @@ img {
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
   .warranty-tables-wrap {
-    grid-template-columns: 1fr;
-  }
-  .repair-flow {
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .warranty-table {
+    font-size: 0.65rem;
+  }
+  .warranty-table th,
+  .warranty-table td {
+    padding: 6px 4px;
   }
   .warranty-table tbody th {
-    width: 120px;
+    width: 60px;
+  }
+  .warranty-table-label {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .repair-flow {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 16px;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .repair-step {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
   }
 }
 
 @media (max-width: 480px) {
-  .repair-flow {
-    grid-template-columns: 1fr;
+  .repair-step {
+    flex: 0 0 85%;
   }
 }
