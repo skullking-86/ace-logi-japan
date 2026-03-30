@@ -1874,14 +1874,42 @@ img {
 
 @media (max-width: 768px) {
     .equipment-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
     .equipment-card-img {
-        height: 160px;
+        height: 80px;
     }
     .equipment-modal-content {
-        padding: 32px 24px;
+        padding: 24px 16px;
+        width: 95%;
+    }
+    .equipment-modal-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+    .equipment-modal-desc {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+    }
+    .equipment-card-text {
+        padding: 12px 6px;
+        gap: 6px;
+    }
+    .brand-logo-inline {
+        height: 16px;
+    }
+    .brand-text-inline {
+        font-size: 1rem;
+        line-height: 1.2;
+        letter-spacing: 1px;
+    }
+    .equipment-card-text p {
+        font-size: 0.7rem;
+    }
+    .livepro-bg::after {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
     }
 }
 
