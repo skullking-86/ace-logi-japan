@@ -10,30 +10,30 @@
    Design Tokens
    ========================================================================= */
 :root {
-    /* Core Palette — inspired by imaiunso.com deep navy */
-    --navy:        #0A0F2E;
-    --navy-mid:    #111740;
-    --navy-light:  #1B2458;
-    --accent:      #2C5EFF;      /* electric blue accent */
-    --accent-mid:  #1A46D4;
-    --accent-glow: rgba(44, 94, 255, 0.18);
-    --gold:        #C8A96E;      /* premium gold for highlights */
+    /* Core Palette — inspired by pacificleague.jp */
+    --navy:        #010719;      /* deep black/navy */
+    --navy-mid:    #002b5c;      /* dark blue */
+    --navy-light:  #142847;
+    --accent:      #0055b4;      /* pacific blue */
+    --accent-mid:  #015dc4;
+    --accent-glow: rgba(0, 85, 180, 0.15);
+    --gold:        #699ed9;      /* light blue accent */
 
     /* Surface */
-    --bg-page:     #F8F8F6;      /* yahagijisyo.co.jp off-white */
+    --bg-page:     #F4F6F9;      /* clean cool white */
     --bg-white:    #FFFFFF;
-    --bg-light:    #F2F4F8;
+    --bg-light:    #EDF1F5;
 
     /* Text */
-    --text-dark:   #0A0F2E;
-    --text-body:   #30363F;
-    --text-muted:  #6B7282;
+    --text-dark:   #010719;
+    --text-body:   #1A202C;
+    --text-muted:  #707A8A;
     --text-white:  #FFFFFF;
     --text-light:  rgba(255,255,255,0.75);
 
     /* Lines */
-    --line-subtle: rgba(0,0,0,0.08);
-    --line-navy:   rgba(10,15,46,0.15);
+    --line-subtle: rgba(0,0,0,0.06);
+    --line-navy:   rgba(1,7,25,0.15);
 
     /* Type */
     --font-sans:   'Noto Sans JP', sans-serif;
@@ -639,8 +639,9 @@ img {
 }
 
 .about-stat-num span {
+    font-family: var(--font-latin);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--accent);
 }
 

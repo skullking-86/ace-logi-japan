@@ -5,12 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const introEl = document.getElementById('heroIntro');
     if (introEl) {
-        // CSS animation is 4.0s; remove from DOM cleanly after completion
-        setTimeout(() => {
-            introEl.style.opacity = '0';
-            introEl.style.pointerEvents = 'none';
-            setTimeout(() => { introEl.style.display = 'none'; }, 100);
-        }, 4100);
+        const pEntries = performance.getEntriesByType("navigation");
+        const isReload = pEntries.length > 0 && pEntries[0].type === "reload";
+        const hasPlayed = sessionStorage.getItem('introPlayed');
+
+        if (hasPlayed && !isReload) {
+            // Skip animation if already played and not a manual refresh
+            introEl.style.display = 'none';
+        } else {
+            // Play animation
+            sessionStorage.setItem('introPlayed', 'true');
+            setTimeout(() => {
+                introEl.style.opacity = '0';
+                introEl.style.pointerEvents = 'none';
+                setTimeout(() => { introEl.style.display = 'none'; }, 100);
+            }, 4100);
+        }
     }
 
     // =========================================================================
